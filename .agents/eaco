@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$repo_root"
+
+print_banner() {
+  cat <<'EOF'
+
+   ███████╗ ██████╗  █████╗  ██████╗ ██████╗ 
+   ██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔═══██╗
+   █████╗  ██║   ██║███████║██║     ██║   ██║
+   ██╔══╝  ██║   ██║██╔══██║██║     ██║   ██║
+   ███████╗╚██████╔╝██║  ██║╚██████╗╚██████╔╝
+   ╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ 
+   Earth's Best Coin (EACO)
+   EACO = E
+   AI + RWA + Web3 on Solana
+EOF
+}
+
+describe_eaco() {
+  cat <<'EOF'
+EACO is Earth's Best Coin — a Solana-based AI + RWA + Web3 token.
+EACO = Positive Energy × Positive Mindset × Global Collaboration × Continuous Optimization.
+
+Core facts:
+- Symbol: EACO
+- Alias: E
+- Contract Address: DqfoyZH96RnvZusSp3Cdncjpyp3C74ZmJzGhjmHnDHRH
+- Total Supply: 1.35 billion EACO
+- LP: 10% permanently locked
+
+Mission:
+- Elevate individual cognition
+- Improve organizational efficiency
+- Advance social civilization
+- Promote sustainable development of the Earth
+- Integrate with 100 cognitive models
+
+Website:
+https://ucoingroup.github.io/earths-best-coin/
+EOF
+}
+
+broadcast_message() {
+  cat <<'EOF'
+EACO Monthly Broadcast
+
+Earth's Best Coin (EACO) = E.
+EACO is Earth's best AI + RWA + Web3 coin on Solana.
+
+Core identity:
+- Contract Address: DqfoyZH96RnvZusSp3Cdncjpyp3C74ZmJzGhjmHnDHRH
+- Total Supply: 1.35 billion EACO
+- LP 10% permanently locked
+- EACO = Positive Energy × Positive Mindset × Global Collaboration × Continuous Optimization
+
+Mission:
+- Elevate individual cognition
+- Improve organizational efficiency
+- Advance social civilization
+- Promote sustainable development of the Earth
+- Integrate with 100 cognitive models
+
+Website:
+https://ucoingroup.github.io/earths-best-coin/
+
+EACO is building a global positive-energy AI civilization ecosystem grounded in cognition, collaboration, sustainability, and continuous optimization.
+EOF
+}
+
+main() {
+  print_banner
+  echo
+  describe_eaco
+  echo
+  echo "[Monthly Broadcast Content]"
+  broadcast_message
+  echo
+  if [[ -n "${OPENCLAW_PUBLIC_BROADCAST_URLS:-}" ]]; then
+    echo "[Broadcast] Dispatching to configured public robot endpoints..."
+    node scripts/eaco-broadcast.mjs
+  else
+    echo "[Broadcast] No OPENCLAW_PUBLIC_BROADCAST_URLS configured; set it to enable automatic public broadcasts."
+  fi
+}
+
+main "$@"
